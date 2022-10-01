@@ -1,0 +1,105 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Update Todo | ID = {{todo.id}}</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body onload="TimeStart()">
+	<div class="container m-5">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header">
+						<h3>Update Todo ID = {{todo.id}}</h3>
+					</div>
+					<div class="card-body">
+						<form action="" method="POST">
+							{{form|crispy}}
+							{% csrf_token %}
+							<button type="submit" class="btn btn-primary">Update</button>
+						</form>
+					</div>
+				</div>
+			
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						 <h3>Current time</h3>
+					</div>
+					<div class="card-body">
+				        <div class="time"></div>
+				        <br>
+				        <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.uz/pogoda/10335" target="_blank"><img src="https://info.weather.yandex.net/10335/2_white.ru.png?domain=uz" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a>
+					</div>
+				</div>
+       
+        <div class="clearfix"></div>
+
+			</div>
+		</div>
+	</div>
+
+<script>
+  
+let clock;
+
+function DisplayTime() { 
+  let d = new Date(); 
+  let h = d.getHours();
+  let m = d.getMinutes(); 
+  let s = d.getSeconds();
+  let injectTime = `
+    <span>${h}</span>
+    <span>${m}</span>
+    <span>${s}</span>
+  `
+  document.querySelector(".time").innerHTML = injectTime; 
+}
+
+function TimeStart(){
+  clock = setInterval("DisplayTime();",1000)
+}
+function TimeStop(){
+  clock = clearInterval(clock)
+}
+</script>
+
+<style>
+  .time{
+  margin: 25px 0;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+.time span{
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #888;
+  color:white;
+}
+.content{
+  display: flex;
+  width: 100%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+#add{
+  float: right;
+}
+.done_delete{
+  float: right;
+}
+</style>
+
+	  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
